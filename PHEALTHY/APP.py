@@ -1,9 +1,6 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
-import base64
-
-[]
 
 # Sample BMI distribution for individuals in Thailand
 
