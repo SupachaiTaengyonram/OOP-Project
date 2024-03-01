@@ -3,69 +3,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import confusion_matrix, classification_report
 import numpy as np
-
-import numpy as np
-
-n_samples = 1000
-
-# สร้างข้อมูลสำหรับฟีเจอร์ smoking (การสูบบุหรี่)
-smoking = np.random.randint(0, 2, n_samples)
-
-# สร้างข้อมูลสำหรับฟีเจอร์ exercise (การออกกำลังกาย)
-exercise = np.random.randint(0, 2, n_samples)
-
-# สร้างข้อมูลสำหรับฟีเจอร์ age (อายุ)
-age = np.random.randint(18, 80, n_samples)
-
-# สร้างข้อมูลสำหรับฟีเจอร์ sex (เพศ)
-sex = np.random.choice(['male', 'female'], n_samples)
-
-# สร้างตารางข้อมูล
-data = pd.DataFrame({'smoking': smoking, 'exercise': exercise, 'age': age, 'sex': sex})
-
-# สร้างฟีเจอร์เสริม 'disease' โดยใช้ตัวแปรอื่นๆเป็นพารามิเตอร์
-# ในที่นี้เราจะใช้ smoking, exercise, age เพื่อสร้างฟีเจอร์นี้
-# เงื่อนไขการสร้างฟีเจอร์นี้เป็นอย่างไรก็ขึ้นอยู่กับคุณว่าจะให้แต่ละฟีเจอร์มีผลต่อโอกาสของโรคอย่างไร
-# ในตัวอย่างนี้ฟีเจอร์ 'disease' จะถูกสร้างโดยการบวกของฟีเจอร์ smoking, exercise, age
-# และมีการกำหนดเงื่อนไขสำหรับความน่าจะเป็นของโรค
-data['disease'] = (2*data['smoking'] + 1.5*data['exercise'] + 0.05*data['age'] + np.random.randn(n_samples)) > 4
-
-# แสดงตารางข้อมูล
-print(data.head())
-
-# บันทึกข้อมูลลงในไฟล์ CSV
-data.to_csv('disease_data.csv', index=False)
-
-# แบ่งข้อมูลเป็นชุดฝึกและชุดทดสอบ
-X = data.drop(columns=['disease'])  # เอา 'disease' ออกเพราะเป็น target variable
-y = data['disease']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# ปรับค่า features ให้มีค่าเฉลี่ย 0 และ variance เท่ากับ 1
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
-
-# สร้างและฝึกโมเดล
-model = LogisticRegression()
-model.fit(X_train_scaled, y_train)
-
-# ทำนายผลของชุดทดสอบ
-y_pred = model.predict(X_test_scaled)
-
-# ประเมินความแม่นยำของโมเดล
-accuracy = accuracy_score(y_test, y_pred)
-print("Accuracy:", accuracy)
-
-# แสดง confusion matrix และ classification report
-print("Confusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
-print("Classification Report:")
-print(classification_report(y_test, y_pred))
 
 # Sample BMI distribution for individuals in Thailand
 thai_bmi_distribution = {
@@ -195,41 +134,6 @@ def show_bmi_page():
         ax.set_title("You vs Thai people ")
         ax.legend()
         st.pyplot(fig)
-def show_disease_risk_page():
-    st.title("คำนวณความเสี่ยงโรค")
-    st.write("กรุณากรอกข้อมูลเพื่อคำนวณความเสี่ยงโรคของคุณ")
-
-    # Input fields for disease risk calculation
-    smoking = st.selectbox("สูบบุหรี่", [0, 1])
-    exercise = st.selectbox("ออกกำลังกาย", [0, 1])
-    age = st.number_input("อายุ", min_value=1, max_value=120, step=1)
-    sex = st.selectbox("เพศ", ["ชาย", "หญิง"])
-
-    if st.button("คำนวณ"):
-        # Create a dataframe from user input
-        data = pd.DataFrame({"smoking": [smoking], "exercise": [exercise], "age": [age], "sex": [sex]})
-        # Calculate disease risk using the function
-        report, matrix = calculate_disease_risk(data)
-        # Display results
-        st.write("Classification Report:")
-        st.write(report)
-        st.write("Confusion Matrix:")
-        st.write(matrix)
-
-def calculate_disease_risk(data):
-    # Preprocessing steps if needed
-    # Split data into features and target
-    X = data.drop(columns=["disease"])  # Assuming "disease" is the target variable
-    y = data["disease"]
-    # Train a logistic regression model
-    model = LogisticRegression()
-    model.fit(X, y)
-    # Dummy predictions and metrics
-    y_pred = model.predict(X)
-    report = classification_report(y, y_pred)
-    matrix = confusion_matrix(y, y_pred)
-    return report, matrix
-    
 
 if __name__ == "__main__":
     main()
