@@ -17,7 +17,7 @@ thai_bmi_distribution = {
 }
 def main():
 
-    page = st.sidebar.selectbox("Search", ["หน้าหลัก", "สารอาหาร", "ออกกำลังกาย", "สูตรอาหาร", "หาค่า BMI(ดัชนีมวลกาย)","BMR(คำนวนแคลอรี่)"])
+    page = st.sidebar.selectbox("Search", ["หน้าหลัก", "สารอาหาร", "ออกกำลังกาย", "สูตรอาหาร", "BMI(ดัชนีมวลกาย)","BMR(คำนวนแคลอรี่)"])
     
     if page == "หน้าหลัก":
         show_home_page()
@@ -146,6 +146,7 @@ def show_bmi_page():
         ax.set_title("You vs Thai people ")
         ax.legend()
         st.pyplot(fig)
+
 def calculate_bmr(weight, height, age, gender):
     if gender == "ชาย":
         bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
