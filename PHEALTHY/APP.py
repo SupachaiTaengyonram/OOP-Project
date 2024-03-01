@@ -16,7 +16,6 @@ thai_bmi_distribution = {
     "Obese": 10
 }
 def main():
-
     page = st.sidebar.selectbox("Search", ["หน้าหลัก", "สารอาหาร", "ออกกำลังกาย", "สูตรอาหาร", "BMI(ดัชนีมวลกาย)","BMR(คำนวนแคลอรี่)"])
     
     if page == "หน้าหลัก":
@@ -127,16 +126,16 @@ def show_bmi_page():
         bmi = weight / ((height / 100) ** 2)
 
         # Display BMI result
-        st.write("ค่า BMI ของคุณคือ: {:.2f}".format(bmi))
-        st.write("ผลลัพธ์ของคุณ")
+        st.markdown("ค่า BMI ของคุณคือ: {:.2f}".format(bmi))
+        st.markdown("ผลลัพธ์ของคุณ")
         if bmi < 18.5:
-            st.write("น้ำหนักน้อยหรือผอม")
+            st.markdown("น้ำหนักน้อยหรือผอม")
         elif bmi < 25:
-            st.write("ปกติ (สุขภาพดี)")
+            st.markdown("ปกติ (สุขภาพดี)")
         elif bmi < 30:
-            st.write("ท้วม (Overweight)")
+            st.markdown("ท้วม (Overweight)")
         else:
-            st.write("อ้วน (Obese)")
+            st.markdown("อ้วน (Obese)")
 
         # Display BMI result as a comparison with Thai BMI distribution
         fig, ax = plt.subplots()
