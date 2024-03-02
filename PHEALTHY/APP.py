@@ -15,9 +15,14 @@ thai_bmi_distribution = {
     "Overweight": 20,
     "Obese": 10
 }
+
+
 def main():
-    page = st.sidebar.selectbox("Search", ["หน้าหลัก", "สารอาหาร", "ออกกำลังกาย", "สูตรอาหาร", "BMI(ดัชนีมวลกาย)","BMR(คำนวนแคลอรี่)"])
+
+    st.sidebar.image('https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg', use_column_width='auto')
     
+    page = st.sidebar.selectbox("Search", ["หน้าหลัก", "สารอาหาร", "ออกกำลังกาย", "สูตรอาหาร", "BMI(ดัชนีมวลกาย)","BMR(คำนวนแคลอรี่)"])
+
     if page == "หน้าหลัก":
         show_home_page()
     elif page == "สารอาหาร":
