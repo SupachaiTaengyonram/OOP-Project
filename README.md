@@ -15,4 +15,4 @@ calculate BMI and calculate BMR
 
 
 - presentation:[https://www.canva.com/design/DAF-nsNgn9o/WopRjKdiaj0CEom1_oYB_g/edit?utm_content=DAF-nsNgn9o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton] link
-- video: link:[]
+- video: link:[https://drive.google.com/file/d/1UMuE-94JtV8m_lzeUXZ76MLpqgNRuIMX/view?usp=share_link]
