@@ -199,7 +199,7 @@ class PhealthyApp:
 
             # Display BMI result as a comparison with Thai BMI distribution
             fig, ax = plt.subplots()
-            sns.barplot(x=list(self.thai_bmi_distribution.keys()), y=list(thai_bmi_distribution.values()), ax=ax, color='skyblue', label='Thai people')
+            sns.barplot(x=list(self.thai_bmi_distribution.keys()), y=list(self.thai_bmi_distribution.values()), ax=ax, color='skyblue', label='Thai people')
             ax.axhline(bmi, color='red', linestyle='--', label='Your BMI')
             ax.set_ylabel("Percentage")
             ax.set_title("You vs Thai people ")
@@ -221,7 +221,7 @@ class PhealthyApp:
         age = st.number_input("อายุ",step=1)
         gender = st.radio("เพศ", ("ชาย", "หญิง"))
         if st.button("คำนวณ"):
-            bmr = self.calculate_bmr(self,weight, height, age, gender)
+            bmr = self.calculate_bmr()
             st.write("BMR (Basal Metabolic Rate): {:.2f} แคลอรี่".format(bmr))
 
 
