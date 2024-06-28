@@ -206,7 +206,7 @@ class PhealthyApp:
             ax.legend()
             st.pyplot(fig)
 
-    def calculate_bmr(self,weight, height, age, gender):
+    def calculate_bmr(self,weight=None, height=None, age=None, gender=None):
         if gender == "ชาย":
             bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
         else:
