@@ -221,7 +221,7 @@ class PhealthyApp:
         age = st.number_input("อายุ",step=1)
         gender = st.radio("เพศ", ("ชาย", "หญิง"))
         if st.button("คำนวณ"):
-            bmr = calculate_bmr(self=None,weight=None, height=None, age=None, gender=None)
+            bmr = calculate_bmr(self,weight=None, height=None, age=None, gender=None)
             st.write("BMR (Basal Metabolic Rate): {:.2f} แคลอรี่".format(bmr))
 
 
